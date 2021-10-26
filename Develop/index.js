@@ -116,7 +116,8 @@ function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
 function init() {
-    getInput();
+    const input = getInput();
+    writeToFile("README.md", input);
 }
 
 // Function call to initialize app
