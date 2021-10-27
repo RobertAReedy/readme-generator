@@ -106,15 +106,18 @@ const questions = [
     },
 ];
 
-async function getInput() { //currently overwrites contributors instead of adding more
+async function getInput() { //currently overwrites contributors instead of adding more creditUser creditGithub addCredit
     let retVal;
     let moreContributors = true;
+    let contributorData = [];
 
-    retVal = await inquirer.prompt(questions.slice(0, 6));
+    retVal = await inquirer.prompt(questions.slice(0, 9));
+    moreContributors = retVal.addCredit;
 
     while (moreContributors) {
         let newContributor = await inquirer.prompt(questions.slice(6, 9));
-        retVal = {...retVal, ...newContributor};
+        retVal.creditUser += " -!- " + newContributor.creditUser;
+        retVal.creditGithub += " -!- " + newContributor.creditGithub;
         moreContributors = newContributor.addCredit;
     }
 
@@ -130,7 +133,7 @@ function writeToFile(fileName, data) {
 function init() {
     getInput()
     .then(input => {
-        console.log(generate(input));
+        (generate(input));
     });
     
 }
