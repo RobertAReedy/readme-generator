@@ -4,7 +4,7 @@ const generate = require("./utils/generateMarkdown");
 
 // TODO: Create an array of questions for user input
 const questions = [
-    {
+    { //0
         type: "input",
         name: "title",
         message: "What would you like to title your project?",
@@ -18,7 +18,7 @@ const questions = [
             }
         }
     },
-    {
+    {//1
         type: "input",
         name: "description",
         message: "How would you like to describe your project?",
@@ -32,12 +32,12 @@ const questions = [
             }
         }
     },
-    {
+    {//2
         type: "confirm",
         name: "confirmTableOfContents",
         message: "Would you like to add a table of contents?",
     },
-    {
+    {//3
         type: "input",
         name: "installation",
         message: "Please explain how to install your project.",
@@ -51,7 +51,7 @@ const questions = [
             }
         }
     },
-    {
+    {//4
         type: "input",
         name: "usage",
         message: "Please explain how to use your project.",
@@ -65,13 +65,13 @@ const questions = [
             }
         }
     },
-    {
+    {//5
         type: "list",
         name: "license",
         message: "Please choose a license for your project.",
         choices: ["MIT", "GNU", "Apache 2.0", "No License"]
     },
-    {
+    {//6
         type: "input",
         name: "creditUser",
         message: "Please type the name of the contributor.",
@@ -85,7 +85,7 @@ const questions = [
             }
         }
     },
-    {
+    {//7
         type: "input",
         name: "creditGithub",
         message: "Please type the github username of the contributor.",
@@ -99,15 +99,26 @@ const questions = [
             }
         }
     },
-    {
+    {//8
         type: "confirm",
         name: "addCredit",
         message: "Would you like to add a contributor to the credit list?",
     },
 ];
 
-function getInput() {
-    return inquirer.prompt(questions);
+async function getInput() { //currently overwrites contributors instead of adding more
+    let retVal;
+    let moreContributors = true;
+
+    retVal = await inquirer.prompt(questions.slice(0, 6));
+
+    while (moreContributors) {
+        let newContributor = await inquirer.prompt(questions.slice(6, 9));
+        retVal = {...retVal, ...newContributor};
+        moreContributors = newContributor.addCredit;
+    }
+
+    return retVal;
 }
 
 // TODO: Create a function to write README file
