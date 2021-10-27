@@ -133,7 +133,7 @@ function writeToFile(fileName, data) {
 function init() {
     getInput()
     .then(input => {
-        (generate(input));
+        console.log(generate(input));
     });
     
 }
