@@ -1,3 +1,8 @@
+/**
+ * Creates a list of <a> objects by splitting the strings
+ * containing the contributor names and github account names
+ * using the special " -!- " separator. 
+ */
 function renderCreditList(contributorString, githubString) {
   let contributorArr = contributorString.split(" -!- ");
   let githubArr = githubString.split(" -!- ");
@@ -13,6 +18,10 @@ function renderCreditList(contributorString, githubString) {
   else {
     return "error";
   }
+}
+
+function renderTableOfContents(tableConfirm) {
+  return "";
 }
 
 // TODO: Create a function that returns a license badge based on which license is passed in
@@ -32,20 +41,20 @@ function generateMarkdown(data) {
   // console.log(data); //OUTDENT EXTENSION
   return `
 # ${data.title}
-
-## Description
+${renderTableOfContents(data.confirmTableOfContents)}
+## <h2 id="description">Description</h2>
 ${data.description}
 
-## Installation
+## <h2 id="installation">Installation</h2>
 ${data.installation}
 
-## How to Use
+## <h2 id="how-to-use">How to Use</h2>
 ${data.usage}
 
-## License
+## <h2 id="license">License</h2>
 ${data.license}
 
-## Contributors
+## <h2 id="contributors">Contributors</h2>
 ${renderCreditList(data.creditUser, data.creditGithub)}
 `;
 }

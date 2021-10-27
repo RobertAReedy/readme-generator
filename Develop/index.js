@@ -1,6 +1,19 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const generate = require("./utils/generateMarkdown");
+const fs = require("fs");
+
+const testData = {
+    title: 'A Project',
+    description: 'It does thing bro',
+    confirmTableOfContents: true,
+    installation: 'You put it in the computer',
+    usage: 'Just kinda press buttons',
+    license: 'MIT',
+    creditUser: 'Robert -!- Sam',
+    creditGithub: 'robertareedy -!- wolfgarb',
+    addCredit: true
+}
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -106,7 +119,7 @@ const questions = [
     },
 ];
 
-async function getInput() { //currently overwrites contributors instead of adding more creditUser creditGithub addCredit
+async function getInput() { //creditUser creditGithub addCredit
     let retVal;
     let moreContributors = true;
     let contributorData = [];
@@ -126,14 +139,20 @@ async function getInput() { //currently overwrites contributors instead of addin
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-
+    fs.writeFile(fileName, data, err => {
+        if (err) {
+            throw err;
+        }
+        console.log("File created!");
+    });
 }
 
 // TODO: Create a function to initialize app
 function init() {
+    writeToFile("./README.md", generate(testData)); return;
     getInput()
     .then(input => {
-        console.log(generate(input));
+        writeToFile("./README.md", generate(input));
     });
     
 }
