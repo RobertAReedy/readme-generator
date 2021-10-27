@@ -21,7 +21,22 @@ function renderCreditList(contributorString, githubString) {
 }
 
 function renderTableOfContents(tableConfirm) {
-  return "";
+  if (tableConfirm) {
+    let retVal;
+    retVal = 
+    `
+## Table of Contents
+ - [Description](#description)\n
+ - [Installation](#installation)\n
+ - [How to Use](#how-to-use)\n
+ - [License](#license)\n
+ - [Contributors](#contributors)
+    `;
+    return retVal;
+  }
+  else {
+    return "";
+  }
 }
 
 // TODO: Create a function that returns a license badge based on which license is passed in

@@ -1,6 +1,17 @@
 
 # A Project
 
+## Table of Contents
+ - [Description](#description)
+
+ - [Installation](#installation)
+
+ - [How to Use](#how-to-use)
+
+ - [License](#license)
+
+ - [Contributors](#contributors)
+    
 ## <h2 id="description">Description</h2>
 It does thing bro
 
