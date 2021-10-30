@@ -9,7 +9,7 @@ const testData = {
     confirmTableOfContents: true,
     installation: 'You put it in the computer',
     usage: 'Just kinda press buttons',
-    license: 'MIT',
+    license: 'Apache 2.0',
     creditUser: 'Robert -!- Sam',
     creditGithub: 'robertareedy -!- wolfgarb',
     addCredit: true
@@ -149,7 +149,7 @@ function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
 function init() {
-    writeToFile("./README.md", generate(testData)); return;
+    // writeToFile("./README.md", generate(testData)); return;
     getInput()
     .then(input => {
         writeToFile("./README.md", generate(input));
